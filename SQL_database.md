@@ -32,6 +32,8 @@ mysql -u username -p'password' -h TARGET -P 3306
 ```bash
 # SQL Authentication
 sqsh -S TARGET -U username -P 'password' -h
+└─$ /usr/share/doc/python3-impacket/examples/mssqlclient.py -p 1433 htbdbuser@10.129.203.12
+
 
 # Windows Authentication
 sqsh -S TARGET -U .\\username -P 'password' -h
